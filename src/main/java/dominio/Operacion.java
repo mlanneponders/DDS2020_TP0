@@ -14,6 +14,17 @@ public class Operacion {
         this.estado = estado;
     }
 
-    //public void valor(  );
+    public int valor(){
+        int total =  this.calcularPrecioTotal();
+        this.precioFinal = total;
+        return total;
+    }
+
+    private int calcularPrecioTotal() {
+        int precioTotal = this.items.stream()
+                .mapToInt(item -> item.getPrecio())
+                .sum();
+        return precioTotal;
+    }
 
 }

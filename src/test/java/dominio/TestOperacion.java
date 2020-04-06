@@ -29,6 +29,8 @@ public class TestOperacion {
         operacionDeEgreso.agregarItem(impresora);
         operacionDeEgreso.agregarItem(cuaderno);
         operacionDeEgreso.cerrarOperacion();
+        operacionDeEgreso.agregarItem(luz);
+
     }
 
     @Test
@@ -37,6 +39,13 @@ public class TestOperacion {
         operacionDeEgreso.agregarItem(cuaderno);
         operacionDeEgreso.agregarItem(luz);
 
-        Assert.assertEquals(1200+90+700,operacionDeEgreso.valorOperacion());
+        Assert.assertEquals(1200+90+700,operacionDeEgreso.valorOperacion(),0.1);
     }
+    @Test
+    public void testOperacionDeCompra() throws Exception {
+        operacionDeEgreso.agregarItem(impresora);
+        operacionDeEgreso.agregarItem(cuaderno);
+        Assert.assertEquals(Documento.REMITO,operacionDeEgreso.compra());
+    }
+
 }

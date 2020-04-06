@@ -17,7 +17,10 @@ public class Operacion {
     }
 
     public int valorOperacion(){
-            return precioFinal;
+        if (this.estaAbierta()){
+            precioFinal = this.calcularPrecioTotal();
+        }
+        return precioFinal;
 
     }
     private int calcularPrecioTotal() {
@@ -26,11 +29,19 @@ public class Operacion {
                 .sum();
     }
 
+
     public void agregarItem(Item item) throws OperacionCerradaException {
         if (this.estaCerrada()){
             throw new OperacionCerradaException("Operacion Cerrada, no se puede agregar item.");
         }
         this.items.add(item);
+        this.setPrecioFinal(this.calcularPrecioTotal());
+    }
+    public void quitarItem(Item item) throws OperacionCerradaException {
+        if (this.estaCerrada()){
+            throw new OperacionCerradaException("Operacion Cerrada, no se puede quitar item.");
+        }
+        this.items.remove(item);
         this.setPrecioFinal(this.calcularPrecioTotal());
     }
     private boolean allArticulos(){
@@ -56,9 +67,8 @@ public class Operacion {
         estado = Estado.CERRADA;
     }
 
-    public void quitarItem(Item item){
-        this.items.remove(item);
-    }
+
+
 
     //Getters & Setter
     public int getPrecioFinal() {

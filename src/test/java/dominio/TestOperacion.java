@@ -1,7 +1,6 @@
 package dominio;
 
-import dominio.exception.OperacionCerradaException;
-import dominio.exception.OperacionDeCompraNoGeneraRemito;
+import dominio.exception.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

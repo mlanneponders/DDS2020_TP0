@@ -1,6 +1,7 @@
 package dominio;
 
-import java.util.ArrayList;
+import dominio.exception.OperacionCerradaException;
+
 import java.util.List;
 
 public class Operacion {
@@ -14,10 +15,12 @@ public class Operacion {
         this.estado = estado;
     }
 
-    public int valor(){
-        int total =  this.calcularPrecioTotal();
-        this.precioFinal = total;
-        return total;
+    public int valorOperacion(){
+        if (this.estaAbierta()){
+            precioFinal = this.calcularPrecioTotal();
+        }
+            return precioFinal;
+
     }
     private int calcularPrecioTotal() {
         return this.items.stream()
@@ -25,6 +28,30 @@ public class Operacion {
                 .sum();
     }
 
+    public void agregarItem(Item item) throws OperacionCerradaException {
+        if (this.estaCerrada()){
+            throw new OperacionCerradaException("Operacion Cerrada, no se puede agregar items.");
+        }
+        this.items.add(item);
+    }
+
+    private boolean estaCerrada() {
+        return estado == Estado.CERRADA;
+    }
+
+    private boolean estaAbierta() {
+        return estado == Estado.ABIERTA;
+    }
+
+    public void cerrarOperacion(){
+        estado = Estado.CERRADA;
+    }
+
+    public void quitarItem(Item item){
+        this.items.remove(item);
+    }
+
+    //Getters & Setter
     public int getPrecioFinal() {
         return precioFinal;
     }

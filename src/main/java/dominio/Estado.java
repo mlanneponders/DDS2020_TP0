@@ -1,3 +1,3 @@
 package dominio;
 
-public enum Estado {ABIERTO,CERRADO}
+public enum Estado {ABIERTA,CERRADA}

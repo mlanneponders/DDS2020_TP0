@@ -2,9 +2,9 @@ package dominio;
 
 public class Item {
     int precio;
-    tipoItem tipo;
+    TipoItem tipo;
 
-    public Item(int precio, tipoItem tipo) {
+    public Item(int precio, TipoItem tipo) {
         this.precio = precio;
         this.tipo = tipo;
     }
@@ -17,11 +17,11 @@ public class Item {
         this.precio = precio;
     }
 
-    public tipoItem getTipo() {
+    public TipoItem getTipo() {
         return tipo;
     }
 
-    public void setTipo(tipoItem tipo) {
+    public void setTipo(TipoItem tipo) {
         this.tipo = tipo;
     }
 }

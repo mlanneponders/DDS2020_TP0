@@ -17,9 +17,6 @@ public class Operacion {
     }
 
     public int valorOperacion(){
-        if (this.estaAbierta()){
-            precioFinal = this.calcularPrecioTotal();
-        }
             return precioFinal;
 
     }
@@ -34,6 +31,7 @@ public class Operacion {
             throw new OperacionCerradaException("Operacion Cerrada, no se puede agregar item.");
         }
         this.items.add(item);
+        this.setPrecioFinal(this.calcularPrecioTotal());
     }
     private boolean allArticulos(){
         return this.items.stream().allMatch(item -> item.getTipo().equals(TipoItem.ARTICULO));
